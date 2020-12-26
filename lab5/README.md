@@ -1,7 +1,7 @@
 Был переработан код прошлых лабораторных работ для ассинхрого поведения программы. Изменения затронули такие файлы как:
-1) HelpLibrary\DataBaseWorker.cs
-2) HelpLibrary\FileTrancser.cs
-3) HelpLibrary\XmlGenerator.cs
+1) HelpLibrary\DataClasses\DataBaseWorker.cs
+2) HelpLibrary\DataClasses\FileTrancser.cs
+3) HelpLibrary\DataClasses\XmlGenerator.cs
 4) lab3\FileManager.cs
 5) lab3\Logger.cs 
 6) lab3\Program.cs
