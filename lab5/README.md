@@ -7,6 +7,7 @@
 6) lab3\Program.cs
 7) lab4\DataManager.cs
 8) lab4\Program.cs
+
 Методы, переработанные под ассинхронную работу, соответсвуют TAP(https://docs.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap)
 
 Примечание: Logger.cs больше всего переработан, на случай использования другой бд, в которой регулярно будут поступать новые данные, которые необохимо будет обрабатывать и отправлять.
