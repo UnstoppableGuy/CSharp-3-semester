@@ -1,15 +1,15 @@
 ﻿using System;
 using System.ServiceProcess;
 using System.IO;
+using System.Threading.Tasks;
 
-namespace FWS
+namespace Lab3
 {
     static class Program
     {
-        static void Main()
+        static async Task Main()
         {
-            Service1 service = new Service1();
-
+            FileManager service = new FileManager();
             try
             {
                 ServiceBase.Run(service);
@@ -18,7 +18,7 @@ namespace FWS
             {
                 using (StreamWriter sw = new StreamWriter(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Exceptions.txt"), true))
                 {
-                    sw.WriteLine($"{DateTime.Now:dd/MM/yyyy HH:mm:ss} Exception: {ex.Message}");
+                    await sw.WriteLineAsync($"{DateTime.Now:dd/MM/yyyy HH:mm:ss} Exception: {ex.Message}");
                 }
             }
         }

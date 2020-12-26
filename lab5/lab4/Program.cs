@@ -12,7 +12,7 @@ namespace Lab4
         static readonly string xmlPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Parsers","configs", "config.xml");
         static readonly string xsdPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Parsers","configs", "config.xsd");
         static readonly string jsonPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Parsers","configs", "appsettings.json");
-        static void Main()
+        static async Task Main()
         {
             ConfigManager configManager;
             DataOptions dataOptions;
@@ -37,14 +37,14 @@ namespace Lab4
                 }
                 dataOptions = configManager.GetOptions<DataOptions>();
                 appInsights = new DataBaseWorker(dataOptions.LoggerConnectionString);
-                appInsights.ClearInsights();
-                appInsights.InsertInsight("Connection established");
+                await appInsights.ClearInsightsAsync();
+                await appInsights.InsertInsightAsync("Connection established");
             }
             catch (Exception ex)
             {
                 using (StreamWriter sw = new StreamWriter(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Exceptions.txt"), true))
                 {
-                    sw.WriteLine($"{DateTime.Now:dd/MM/yyyy HH:mm:ss} Exception: {ex.Message}");
+                    await sw.WriteLineAsync($"{DateTime.Now:dd/MM/yyyy HH:mm:ss} Exception: {ex.Message}");
                 }
                 return;
             }
@@ -55,8 +55,8 @@ namespace Lab4
             }
             catch (Exception ex)
             {
-                appInsights.InsertInsight("Exception: " + ex.Message);
-                appInsights.WriteInsightsToXml(dataOptions.OutputFolder);
+                await appInsights.InsertInsightAsync("Exception: " + ex.Message);
+                await appInsights.WriteInsightsToXmlAsync(dataOptions.OutputFolder);
             }
         }
         static void ValidationEventHandler(object sender, ValidationEventArgs e)

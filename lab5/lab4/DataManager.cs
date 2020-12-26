@@ -18,15 +18,15 @@ namespace Lab4
             DataBaseWorker reader = new DataBaseWorker(dataOptions.ConnectionString);
             FileTransfer fileTransfer = new FileTransfer(dataOptions.OutputFolder, dataOptions.SourcePath);
             string customersFileName = "customers";
-            reader.GetCustomers(dataOptions.OutputFolder, appInsights, customersFileName);
-            fileTransfer.SendFileToFtp($"{customersFileName}.xml");
-            fileTransfer.SendFileToFtp($"{customersFileName}.xsd");
-            appInsights.InsertInsight("Files uploaded");
+            await reader.GetCustomersAsync(dataOptions.OutputFolder, appInsights, customersFileName);
+            await fileTransfer.SendFileToFtpAsync($"{customersFileName}.xml");
+            await fileTransfer.SendFileToFtpAsync($"{customersFileName}.xsd");
+            await appInsights.InsertInsightAsync("Files uploaded");
         }
         protected override void OnStop()
         {
-            appInsights.InsertInsight("Stop");
-            appInsights.WriteInsightsToXml(dataOptions.OutputFolder);
+            await appInsights.InsertInsightAsync("Stop");
+            await appInsights.WriteInsightsToXmlAsync(dataOptions.OutputFolder);
         }
     }
 }

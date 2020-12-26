@@ -1,4 +1,6 @@
-﻿namespace FWS
+﻿using System.IO.Compression;
+
+namespace Lab3
 {
     public class Options
     {

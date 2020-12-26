@@ -1,6 +1,6 @@
 ﻿using System.IO.Compression;
 
-namespace FWS
+namespace Lab3
 {
     public class ArchiveOptions
     {
